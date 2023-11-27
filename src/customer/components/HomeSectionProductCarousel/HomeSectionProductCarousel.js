@@ -4,9 +4,8 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import { Button } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { mens_kurta } from "../../../Data/mens_kurta";
 
-const HomeSectionProductCarousel = () => {
+const HomeSectionProductCarousel = ({data}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const responsive = {
     0: { items: 1 },
@@ -29,7 +28,7 @@ const HomeSectionProductCarousel = () => {
     setActiveIndex(item);
   };
 
-  const items = mens_kurta.map((item, index) => (
+  const items = data.map((item, index) => (
     <div key={index}>
       <HomeSectionCard product={item} />
     </div>
@@ -45,7 +44,7 @@ const HomeSectionProductCarousel = () => {
           disableDotsControls
           onSlideChanged={syncActiveIndex}
           activeIndex={activeIndex}
-          ref={carouselRef} // Set the ref here
+          ref={carouselRef}
         />
         {activeIndex !== items.length - 5 && (
           <Button
