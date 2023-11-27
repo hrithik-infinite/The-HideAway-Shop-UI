@@ -7,9 +7,12 @@ const HomePage = () => {
     <div>
       <MainCarousel />
       <div className="space-y-10 py-20 flex flex-col justify-center px-5 lg:px-10">
-        <HomeSectionProductCarousel data={mens_kurta} />
-        <HomeSectionProductCarousel data={mens_kurta} />
-        <HomeSectionProductCarousel data={mens_kurta} />
+        <HomeSectionProductCarousel data={mens_kurta} sectionName={"Men's Kurta"}/>
+        <HomeSectionProductCarousel data={mens_kurta} sectionName={"Men's Shoes"}/>
+        <HomeSectionProductCarousel data={mens_kurta} sectionName={"Men's Shirt"}/>
+        <HomeSectionProductCarousel data={mens_kurta} sectionName={"Women's Saree"}/>
+        <HomeSectionProductCarousel data={mens_kurta} sectionName={"Women's Dress"}/>
+
       </div>
     </div>
   );
