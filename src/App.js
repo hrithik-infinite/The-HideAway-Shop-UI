@@ -6,7 +6,7 @@ import HomePage from './customer/pages/HomePage/HomePage';
 function App() {
   return (
     <div >
-      <div>
+      <div className='z-50'>
         <Navigation />
       </div>
       <div>
