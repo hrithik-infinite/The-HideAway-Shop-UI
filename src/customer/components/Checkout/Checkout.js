@@ -52,7 +52,7 @@ export default function Checkout() {
                 Back
               </Button>
             </Box>
-            <div>{step === 2 || step === "2" ? <AddAddress /> : <OrderSummary />}</div>
+            <div className="mt-10">{step === 2 || step === "2" ? <AddAddress /> : <OrderSummary />}</div>
           </React.Fragment>
         )}
       </Box>

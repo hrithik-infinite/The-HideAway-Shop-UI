@@ -17,12 +17,21 @@ const AddAddress = () => {
     console.log(data);
     console.log(address);
   };
+  const temp = {
+    firstName : "Hrithik",
+    lastName : "Agarwal",
+    streetAddress :"Bagmane",
+    city : "BLR",
+    state : "KTK",
+    zipCode : "560016",
+    mobile : "987654321234"
+  };
   return (
     <div>
       <Grid container spacing={4}>
         <Grid className="border rounded-md shadow-md h-[30.5rem] overflow-y-scroll ">
           <div className="p-5 py-7 border-b cursor-pointer">
-            <AddressCard />
+            <AddressCard address={temp} />
             <Button sx={{ mt: 2 }} size="large" variant="contained" color="primary" onClick={() => {}}>
               Deliver Here
             </Button>
