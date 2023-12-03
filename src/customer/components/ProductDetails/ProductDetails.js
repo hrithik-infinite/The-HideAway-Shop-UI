@@ -3,6 +3,8 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { Box, Button, Grid, LinearProgress, Rating } from "@mui/material";
 import ProductReviewCard from "./ProductReviewCard";
+import mens_kurta from "../../../Data/mens_kurta";
+import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -330,6 +332,15 @@ export default function ProductDetails() {
                 </Box>
               </Grid>
             </Grid>
+          </div>
+        </section>
+        {/* similer product */}
+        <section className=" pt-10">
+          <h1 className="py-5 text-xl font-bold">Similer Products</h1>
+          <div className="flex flex-wrap space-y-5">
+            {mens_kurta.map((item) => (
+              <HomeSectionCard product={item} />
+            ))}
           </div>
         </section>
       </div>
