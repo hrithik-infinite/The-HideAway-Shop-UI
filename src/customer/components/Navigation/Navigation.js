@@ -4,6 +4,7 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from "@her
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import { navigation } from "../../../config/navigationMenu";
+import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -11,12 +12,14 @@ function classNames(...classes) {
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
   console.log(navigation);
 
   const handleCategoryClick = (category, section, item, close) => {
+    navigate(`/${category.id}/${section.id}/${item.id}`);
     close();
   };
   const handleUserClick = (event) => {
@@ -29,6 +32,7 @@ export default function Navigation() {
     handleCloseUserMenu();
   };
   const handleMyOrderClick = () => {
+    navigate("/account/order");
     handleCloseUserMenu();
   };
   const handleOpen = () => {};
@@ -257,9 +261,7 @@ export default function Navigation() {
                           bgcolor: deepPurple[500],
                           color: "white",
                           cursor: "pointer",
-                        }}>
-                       
-                      </Avatar>
+                        }}></Avatar>
                       {/* <Button
                         id="basic-button"
                         aria-controls={open ? "basic-menu" : undefined}
