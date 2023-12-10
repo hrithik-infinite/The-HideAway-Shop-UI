@@ -1,9 +1,25 @@
 import { Alert, Button, Grid, Snackbar, TextField } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUser, register } from "../../Redux/Auth/Action";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const { auth } = useSelector((store) => store);
+
+  useEffect(() => {
+    if (jwt) {
+        console.log("inse use effect")
+      dispatch(getUser(jwt));
+    }
+  }, [jwt, auth.jwt]);
+
+  //   useEffect(() => {
+  //     if (auth.user || auth.error) setOpenSnackBar(true);
+  //   }, [auth.user]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,6 +32,7 @@ const SignUp = () => {
       password: data.get("password"),
     };
     console.log("user data", userData);
+    dispatch(register(userData));
   };
   return (
     <div className="">
