@@ -4,7 +4,8 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from "@her
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import { navigation } from "../../../config/navigationMenu";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import AuthModal from "../../Auth/AuthModal";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -13,29 +14,41 @@ function classNames(...classes) {
 export default function Navigation() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const { auth, cart } = useSelector((store) => store);
+  const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
-  console.log(navigation);
+  const location = useLocation();
 
-  const handleCategoryClick = (category, section, item, close) => {
-    navigate(`/${category.id}/${section.id}/${item.id}`);
-    close();
-  };
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleCloseUserMenu = (event) => {
     setAnchorEl(null);
   };
+
+  const handleOpen = () => {
+    setOpenAuthModal(true);
+  };
+  const handleClose = () => {
+    setOpenAuthModal(false);
+  };
+
+  const handleCategoryClick = (category, section, item, close) => {
+    navigate(`/${category.id}/${section.id}/${item.id}`);
+    close();
+  };
+
   const handleLogout = () => {
     handleCloseUserMenu();
+    // dispatch(logout());
   };
   const handleMyOrderClick = () => {
-    navigate("/account/order");
     handleCloseUserMenu();
+    navigate("/account/order");
   };
-  const handleOpen = () => {};
   return (
     <div className="bg-white">
       {/* Mobile menu */}
@@ -248,7 +261,7 @@ export default function Navigation() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  {true ? (
+                  {false ? (
                     <div>
                       <Avatar
                         className="text-white"
@@ -313,6 +326,7 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
+      <AuthModal handleClose={handleClose} open={openAuthModal} />
     </div>
   );
 }
