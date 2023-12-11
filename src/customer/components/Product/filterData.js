@@ -39,7 +39,7 @@ export const singleFilter = [
     ],
   },
   {
-    id: "disccout",
+    id: "discount",
     name: "Discount Range",
     options: [
       {
