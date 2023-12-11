@@ -17,7 +17,7 @@ import {
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILURE,
 } from "./ActionType";
-import api, { API_BASE_URL } from "../../../config/api";
+import api, { API_BASE_URL } from "../../config/api";
 
 export const findProducts = (reqData) => async (dispatch) => {
   const { colors, sizes, minPrice, maxPrice, minDiscount, category, stock, sort, pageNumber, pageSize } = reqData;
