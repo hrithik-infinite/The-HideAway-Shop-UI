@@ -12,6 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProducts } from "../../../Redux/Product/Action";
+import { Pagination } from "@mui/material";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -54,6 +55,14 @@ export default function Product() {
     const query = searchParams.toString();
     navigate({ search: `?${query}` });
   };
+
+  const handlePaginationChange = (event, value) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("page", value);
+    const query = searchParams.toString();
+    navigate({ search: `?${query}` });
+  };
+
   useEffect(() => {
     const [minPrice, maxPrice] = price === null ? [0, 0] : price.split("-").map(Number);
     const data = {
@@ -207,15 +216,16 @@ export default function Product() {
 
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
-                <div className="flex flex-wrap justify-center bg-white border py-5 rounded-md ">
-                  {product.products && product.products.content &&product.products?.content.map((item) => (
-                    <ProductCard product={item} />
-                  ))}
-                </div>
+                <div className="flex flex-wrap justify-center bg-white border py-5 rounded-md ">{product.products && product.products.content && product.products?.content.map((item) => <ProductCard product={item} />)}</div>
               </div>
             </div>
           </section>
         </main>
+        <section className="w-full px-[3.6rem]">
+          <div className="mx-auto px-4 py-5 flex justify-center shadow-lg border rounded-md">
+            <Pagination count={product.products?.totalPages} color="primary" className="" onChange={handlePaginationChange} />
+          </div>
+        </section>
       </div>
     </div>
   );
