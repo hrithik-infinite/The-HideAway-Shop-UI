@@ -3,9 +3,8 @@ import "./ProductCard.css";
 import { useNavigate } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-
   return (
-    <div onClick={() => navigate(`/product/${5}`)} className="productCard w-[15rem] border m-3 transition-all cursor-pointer ">
+    <div onClick={() => navigate(`/product/${product?.id}`)} className="productCard w-[15rem] border m-3 transition-all cursor-pointer ">
       <div className="h-[20rem]">
         <img className="h-full w-full object-cover object-left-top" src={product.imageUrl} alt=""></img>
       </div>
@@ -13,7 +12,7 @@ const ProductCard = ({ product }) => {
         <div>
           <p className="font-bold opacity-60">{product.brand}</p>
           <p>{product.title}</p>
-          <p className="font-semibold opacity-50">Yellow</p>
+          <p className="font-semibold opacity-50">{product.color}</p>
         </div>
         <div className="flex space-x-2 items-center">
           <p className="font-semibold">{`₹ ${product.discountedPrice}`}</p>
