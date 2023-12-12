@@ -244,12 +244,7 @@ export default function ProductDetails() {
           <div className="border p-5">
             <Grid container spacing={7}>
               <Grid item xs={7}>
-                <div className="space-y-5">
-                  {[1, 1, 1, 1].map((item, i) => (
-                    <div>moye</div>
-                    // <ProductReviewCard item={item} />
-                  ))}
-                </div>
+                <div className="space-y-5">{product?.reviews && product?.reviews.map((item, i) => <ProductReviewCard item={item} />)}</div>
               </Grid>
 
               <Grid item xs={5}>
