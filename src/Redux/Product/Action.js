@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import {
   FIND_PRODUCTS_BY_CATEGORY_REQUEST,
   FIND_PRODUCTS_BY_CATEGORY_SUCCESS,

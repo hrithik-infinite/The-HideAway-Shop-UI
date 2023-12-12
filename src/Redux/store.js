@@ -6,9 +6,8 @@ import cartReducer from "./Cart/Reducer";
 import { orderReducer } from "./Order/Reducer";
 const rootReducer = combineReducers({
   auth: authReducer,
-  product: customerProductReducer,
+  products: customerProductReducer,
   cart: cartReducer,
   order: orderReducer,
 });
-
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
