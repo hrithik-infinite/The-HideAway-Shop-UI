@@ -2,7 +2,20 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Button, IconButton } from "@mui/material";
 import React from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { useDispatch } from "react-redux";
+import { removeCartItem, updateCartItem } from "../../../Redux/Cart/Action";
 const CartItem = ({ item }) => {
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+
+  const handleRemoveItemFromCart = () => {
+    const data = { cartItemId: item?.id, jwt };
+    dispatch(removeCartItem(data));
+  };
+  const handleUpdateCartItem = (num) => {
+    const data = { data: { quantity: item.quantity + num }, cartItemId: item?.id, jwt };
+    dispatch(updateCartItem(data));
+  };
   return (
     <div className="p-5 shadow-lg border rounded-md">
       <div className="flex items-center">
@@ -20,20 +33,25 @@ const CartItem = ({ item }) => {
           </div>
         </div>
       </div>
-      <div className="lg:flex items-center lg:space-x-10 pt-4">
-        <div className="flex items-center space-x-2 ">
-          <IconButton color="primary">
-            <RemoveCircleOutlineIcon />
-          </IconButton>
-          <span className="py-1 px-7 border rounded-sm">{item?.quantity}</span>
-          <IconButton color="primary">
-            <AddCircleOutlineIcon />
-          </IconButton>
+      {
+        <div className="lg:flex items-center lg:space-x-10 pt-4">
+          <div className="flex items-center space-x-2 ">
+            <IconButton onClick={() => handleUpdateCartItem(-1)} disabled={item?.quantity <= 1} color="primary" aria-label="add an alarm">
+              <RemoveCircleOutlineIcon />
+            </IconButton>
+
+            <span className="py-1 px-7 border rounded-sm">{item?.quantity}</span>
+            <IconButton onClick={() => handleUpdateCartItem(1)} color="primary" aria-label="add an alarm">
+              <AddCircleOutlineIcon />
+            </IconButton>
+          </div>
+          <div className="flex text-sm lg:text-base mt-5 lg:mt-0">
+            <Button onClick={handleRemoveItemFromCart} variant="text">
+              Remove{" "}
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button variant="text">Remove</Button>
-        </div>
-      </div>
+      }
     </div>
   );
 };
