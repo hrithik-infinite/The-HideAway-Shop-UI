@@ -14,8 +14,6 @@ const AddAddress = () => {
       zipCode: data.get("zip"),
       mobile: data.get("phoneNumber"),
     };
-    console.log(data);
-    console.log(address);
   };
 
   return (

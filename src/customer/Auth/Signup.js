@@ -12,7 +12,6 @@ const SignUp = () => {
 
   useEffect(() => {
     if (jwt) {
-        console.log("inse use effect")
       dispatch(getUser(jwt));
     }
   }, [jwt, auth.jwt]);
@@ -31,7 +30,6 @@ const SignUp = () => {
       email: data.get("email"),
       password: data.get("password"),
     };
-    console.log("user data", userData);
     dispatch(register(userData));
   };
   return (

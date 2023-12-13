@@ -25,7 +25,6 @@ const Login = () => {
       email: data.get("email"),
       password: data.get("password"),
     };
-    console.log("user data", userData);
     dispatch(login(userData));
   };
   return (

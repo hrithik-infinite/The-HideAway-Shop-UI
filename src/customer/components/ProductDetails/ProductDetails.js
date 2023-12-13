@@ -52,7 +52,6 @@ export default function ProductDetails() {
   const jwt = localStorage.getItem("jwt");
   const { products } = useSelector((store) => store);
   const product = addInStockKey(products.product);
-  console.log(product);
   const breadCrumb = getCategoryHierarchy(product?.category);
   breadCrumb.pop();
   const handleAddToCart = () => {
