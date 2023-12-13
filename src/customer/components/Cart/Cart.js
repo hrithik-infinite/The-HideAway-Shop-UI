@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CartItem from "./CartItem";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCart } from "../../../Redux/Cart/Action";
 
 const Cart = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const { cart } = useSelector((store) => store);
+  const cartItemArr = cart?.cart?.cartItems;
+  console.log("items arr ", cartItemArr);
+  useEffect(() => {
+    dispatch(getCart(jwt));
+  }, [jwt]);
   const handleCheckout = () => {
     navigate("/checkout?step=2");
   };
@@ -12,11 +22,7 @@ const Cart = () => {
     <div>
       <div className="lg:grid grid-cols-3 lg:px-16 relative">
         <div className="lg:col-span-2 lg:px-5 bg-white">
-          <div className=" space-y-3">
-            {[1, 1, 1, 1].map((item) => (
-              <CartItem />
-            ))}
-          </div>
+          <div className=" space-y-3">{cartItemArr && cartItemArr.map((item) => <CartItem item = {item} />)}</div>
         </div>
         <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0 ">
           <div className="border p-5 bg-white shadow-lg rounded-md">
