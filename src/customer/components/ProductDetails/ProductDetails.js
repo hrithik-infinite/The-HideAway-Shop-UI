@@ -8,6 +8,7 @@ import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import { useFetcher, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../../Redux/Product/Action";
+import { addItemToCart } from "../../../Redux/Cart/Action";
 
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
@@ -55,6 +56,13 @@ export default function ProductDetails() {
   const breadCrumb = getCategoryHierarchy(product?.category);
   breadCrumb.pop();
   const handleAddToCart = () => {
+    const reqData = {
+      data: {
+        productId: productId,
+        size: selectedSize?.name,
+      },
+    };
+    dispatch(addItemToCart(reqData));
     navigate("/cart");
   };
 
