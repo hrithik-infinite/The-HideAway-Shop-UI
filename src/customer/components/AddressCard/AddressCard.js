@@ -1,15 +1,6 @@
 import React from "react";
 
-const AddressCard = () => {
-  const address = {
-    firstName: "Hrithik",
-    lastName: "Agarwal",
-    streetAddress: "Bagmane",
-    city: "BLR",
-    state: "KTK",
-    zipCode: "560016",
-    mobile: "987654321234",
-  };
+const AddressCard = ({ address }) => {
   return (
     <div>
       {/* <h1 className="text-lg font-semibold py-4">Delivery Adress</h1> */}
