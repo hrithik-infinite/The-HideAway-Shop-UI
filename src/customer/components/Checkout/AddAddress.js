@@ -1,7 +1,15 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
 import React from "react";
 import AddressCard from "../AddressCard/AddressCard";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createOrder } from "../../../Redux/Order/Action";
 const AddAddress = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const jwt = localStorage.getItem("jwt");
+  const { auth } = useSelector((store) => store);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -14,6 +22,7 @@ const AddAddress = () => {
       zipCode: data.get("zip"),
       mobile: data.get("phoneNumber"),
     };
+    dispatch(createOrder({ address, jwt, navigate }));
   };
 
   return (
