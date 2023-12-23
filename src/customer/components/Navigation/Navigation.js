@@ -8,7 +8,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AuthModal from "../../Auth/AuthModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout } from "../../../Redux/Auth/Action";
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -68,11 +67,7 @@ export default function Navigation() {
 
   return (
     <div className="bg-white">
-      
-
       <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Get free delivery on orders over &#8377;599</p>
-
         <nav aria-label="Top" className="mx-auto">
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
@@ -84,8 +79,8 @@ export default function Navigation() {
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
                 <a href="#">
-                  <span className="sr-only">Your Company</span>
-                  <img className="h-8 w-8 mr-2" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                  <span className="sr-only">The Hideaway Shop</span>
+                  <img className="h-14 w-20 mr-2 ml-2" src="/logo_hideaway.png" alt="" />
                 </a>
               </div>
 
