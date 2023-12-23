@@ -45,8 +45,7 @@ export const updatePayment = (reqData) => {
           Authorization: `Bearer ${reqData.jwt}`,
         },
       };
-      const response = await axios.get(`${API_BASE_URL}/api/payments?payment_id=${reqData.paymentId}&order_id=${reqData.orderId}`, config);
-      console.log("updated data", response.data);
+      const response = await axios.get(`${API_BASE_URL}/api/payments?payment_id=${reqData.paymentId}&order_id=${reqData.OrderId}`, config);
       dispatch(updatePaymentSuccess(response.data));
     } catch (error) {
       dispatch(updatePaymentFailure(error.message));

@@ -5,18 +5,20 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderById } from "../../../Redux/Order/Action";
 import { updatePayment } from "../../../Redux/Payment/Action";
+import OrderTraker from "../Order/OrderTracker";
 
 const PaymentSuccess = () => {
   const [paymentId, setPaymentId] = useState("");
   const [referenceId, setReferenceId] = useState("");
   const [paymentStatus, setPaymentStatus] = useState("");
-  const { orderId } = useParams();
+  const { OrderId } = useParams();
+  console.log("orderid   ", OrderId);
   const jwt = localStorage.getItem("jwt");
   const dispatch = useDispatch();
   const { order } = useSelector((store) => store);
+  console.log("orderrrrrrrrrrrrrrrrrr", order);
 
   useEffect(() => {
-    console.log("orderId", orderId);
     const urlParams = new URLSearchParams(window.location.search);
     setPaymentId(urlParams.get("razorpay_payment_id"));
     setReferenceId(urlParams.get("razorpay_payment_link_reference_id"));
@@ -25,11 +27,11 @@ const PaymentSuccess = () => {
 
   useEffect(() => {
     if (paymentId && paymentStatus === "paid") {
-      const data = { orderId, paymentId, jwt };
+      const data = { OrderId, paymentId, jwt };
       dispatch(updatePayment(data));
-      dispatch(getOrderById(orderId));
+      dispatch(getOrderById(OrderId));
     }
-  }, [orderId, paymentId]);
+  }, [OrderId, paymentId]);
 
   return (
     <div className="px-2 lg:px-36">
@@ -40,7 +42,7 @@ const PaymentSuccess = () => {
         </Alert>
       </div>
 
-      {/* <OrderTraker activeStep={1}/> */}
+      <OrderTraker activeStep={1} />
 
       <Grid container className="space-y-5 py-5 pt-20">
         {order.order?.orderItems.map((item) => (

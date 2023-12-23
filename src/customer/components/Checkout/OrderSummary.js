@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getOrderById } from "../../../Redux/Order/Action";
+import { createPayment } from "../../../Redux/Payment/Action";
 const OrderSummary = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -17,6 +18,11 @@ const OrderSummary = () => {
     dispatch(getOrderById(orderId));
   }, [orderId]);
 
+  const handleCreatePayment = () => {
+    const data = { orderId: order.order?.id, jwt };
+    console.log("datttaaaaa" , data);
+    dispatch(createPayment(data));
+  };
   return (
     <div>
       <div className="p-5 shadow-lg rounded-s-md border">
@@ -52,7 +58,7 @@ const OrderSummary = () => {
                 </div>
               </div>
 
-              <Button variant="contained" type="submit" sx={{ padding: ".8rem 2rem", marginTop: "2rem", width: "100%" }}>
+              <Button onClick={handleCreatePayment} variant="contained" type="submit" sx={{ padding: ".8rem 2rem", marginTop: "2rem", width: "100%" }}>
                 Check Out
               </Button>
             </div>
